@@ -32,11 +32,21 @@ export default class ItemsListScreen extends React.Component {
       render: true,
     });
   }
+  async componentDidUpdate(){
+    const itemType = this.props.route.params.itemType;
+    await fetch(
+      'http://testdeployment-env.eba-eqdcmu3a.us-east-2.elasticbeanstalk.com/api/search/category/' +
+        itemType,
+    )
+      .then((response) => response.json())
+      .then((itemlist) => this.getData(itemlist))
+      .catch((err) => console.log(err));
+  }
 
-  componentDidMount() {
+  async componentDidMount() {
     // console.log(this.props.route);
     const itemType = this.props.route.params.itemType;
-    fetch(
+    await fetch(
       'http://testdeployment-env.eba-eqdcmu3a.us-east-2.elasticbeanstalk.com/api/search/category/' +
         itemType,
     )
@@ -44,7 +54,7 @@ export default class ItemsListScreen extends React.Component {
       .then((itemlist) => this.getData(itemlist))
       .catch((err) => console.log(err));
 
-    console.log(this.state.itemlist);
+    // console.log(this.state.itemlist);
   }
 
   renderMenuItem = ({item}) => {

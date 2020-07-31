@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: '10%',
     paddingRight: '10%',
+    marginBottom: 20,
+
   },
   header: {
     height: 50,

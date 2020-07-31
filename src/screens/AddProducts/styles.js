@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
   },
   TextInput: {
+    paddingLeft: 10,
     marginTop: 10,
     height: 40,
     borderColor: 'gray',
