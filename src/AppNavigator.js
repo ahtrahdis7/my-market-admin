@@ -6,6 +6,7 @@ import AddProducts from './screens/AddProducts/AddProducts';
 import OrderDetails from './screens/OrderDetails/OrderDetailsScreen';
 import Update from './screens/UpdateProducts/updateProducts';
 import ItemList from './screens/ItemsList/ItemsListScreen';
+import UpdateDetails from './screens/updateDetailsScreen/update';
 const Stack = createStackNavigator();
 
 const options = {
@@ -35,6 +36,8 @@ function App() {
         />
         <Stack.Screen name="Update" options={options} component={Update} />
         <Stack.Screen name="ItemsList" options={options} component={ItemList} />
+        <Stack.Screen name="UpdateDetails" options={options} component={UpdateDetails} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
