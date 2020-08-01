@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 import React from 'react';
-import {SafeAreaView, Button, Text, View, TextInput} from 'react-native';
+import { SafeAreaView, Button, Text, View, TextInput } from 'react-native';
 import styles from './styles';
 
 async function submitProduct(props, itemObj) {
@@ -25,10 +25,15 @@ async function submitProduct(props, itemObj) {
       {
         method: 'POST',
         body: JSON.stringify(object),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
       },
     )
       .then((response) => response.json())
       .then(function (res) {
+        console.log(res)
         alert('|| Product Added Successfully ||\n redirecting...');
         props.navigation.navigate('Home');
         // AddProductsScreen(props);

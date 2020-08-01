@@ -10,9 +10,10 @@ import {
   Button,
 } from 'react-native';
 import styles from './styles';
+import img from './image.png'
 
 export default class ItemsListScreen extends React.Component {
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = ({ navigation }) => {
     console.log(this.props);
     return {
       title: this.props.route.params.itemType,
@@ -32,11 +33,11 @@ export default class ItemsListScreen extends React.Component {
       render: true,
     });
   }
-  async componentDidUpdate(){
+  async componentDidUpdate() {
     const itemType = this.props.route.params.itemType;
     await fetch(
       'http://testdeployment-env.eba-eqdcmu3a.us-east-2.elasticbeanstalk.com/api/search/category/' +
-        itemType,
+      itemType,
     )
       .then((response) => response.json())
       .then((itemlist) => this.getData(itemlist))
@@ -48,7 +49,7 @@ export default class ItemsListScreen extends React.Component {
     const itemType = this.props.route.params.itemType;
     await fetch(
       'http://testdeployment-env.eba-eqdcmu3a.us-east-2.elasticbeanstalk.com/api/search/category/' +
-        itemType,
+      itemType,
     )
       .then((response) => response.json())
       .then((itemlist) => this.getData(itemlist))
@@ -57,40 +58,40 @@ export default class ItemsListScreen extends React.Component {
     // console.log(this.state.itemlist);
   }
 
-  onPressUpdate(item){
-    this.props.navigation.navigate('UpdateDetails', {item: item })
+  onPressUpdate(item) {
+    this.props.navigation.navigate('UpdateDetails', { item: item })
   }
 
-    onPressDelete(item){
-  //     for(var i in item) 
-  // console.log(i);
-     fetch('http://testdeployment-env.eba-eqdcmu3a.us-east-2.elasticbeanstalk.com/api/admin/deleteProduct', {
+  onPressDelete(item) {
+    const obj = { productId: item.productId };
+    fetch('http://testdeployment-env.eba-eqdcmu3a.us-east-2.elasticbeanstalk.com/api/admin/deleteProduct', {
       method: "POST",
-      body: JSON.stringify({
-        productId: item.productId.toString()
+      body: JSON.stringify(obj),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => response.json())
+      .then(function (res) {
+        if (res) {
+          alert('Delete Request Success');
+        }
       })
-    })
-    .then((response) => response.json())
-    .then(function (res) {
-      alert('Delete Request Success');
-      // props.navigation.goBack();
-      // AddProductsScreen(props);
-    })
-    // eslint-disable-next-line handle-callback-err
-    .catch((err) => console.log('Something went Wrong'));
+      .catch((err) => console.log('Something went Wrong'));
     this.props.navigation.navigate('Home')
-
   }
 
-  renderMenuItem = ({item}) => {
+  renderMenuItem = ({ item }) => {
     // console.log(item)
-
+    const img2 = { uri: 'data:image/png;base64,' + item.imageLink };
+    const imgg = item.imageLink !== null ? img2 : img;
     return (
       <TouchableHighlight underlayColor="rgba(73,182,77,1,0.9)">
         <View style={styles.card}>
           <Image
             style={styles.photo}
-            source={{uri: 'data:image/png;base64,' + item.imageLink}}
+            source={imgg}
           />
           <View style={styles.textSection}>
             <Text style={styles.title}>ProductId: {item.productId}</Text>
@@ -98,12 +99,12 @@ export default class ItemsListScreen extends React.Component {
             <Text style={styles.title}>Price:{item.price}</Text>
             <Text style={styles.title}>Category: {item.category}</Text>
             <Text style={styles.title}>Quantity: {item.quantity}</Text>
-            <Text style={styles.title}>Discount: {item.discount?item.discount:"0"}</Text>
+            <Text style={styles.title}>Discount: {item.discount ? item.discount : "0"}</Text>
           </View>
           <View style={styles.buttonView}>
             <Button style={styles.update} color="#008037" title="Update" onPress={() => this.onPressUpdate(item)} />
-            <Text style={{color: 'white'}}>|</Text>
-            <Button style={styles.delete} color="#a30505" title="Delete" onPress={() => this.onPressDelete(item)}/>
+            <Text style={{ color: 'white' }}>|</Text>
+            <Button style={styles.delete} color="#a30505" title="Delete" onPress={() => this.onPressDelete(item)} />
           </View>
         </View>
       </TouchableHighlight>

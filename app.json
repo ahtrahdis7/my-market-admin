@@ -1,26 +1,24 @@
 {
   "expo": {
-    "name": "StoreAdminExpo",
-    "slug": "StoreAdminExpo",
+    "name": "Mo Supermkt admin",
+    "slug": "supermktadmin",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo1.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo1.png"
     },
     "android": {
       "package": "com.iamcool7.StoreAdminExpo"
