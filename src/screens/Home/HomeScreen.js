@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {SafeAreaView, Button, Text, View, Image} from 'react-native';
+import React, { Component } from 'react';
+import { SafeAreaView, Button, Text, View, Image } from 'react-native';
 import styles from './styles';
 
 class HomeScreen extends Component {
@@ -29,6 +29,13 @@ class HomeScreen extends Component {
               title="Update Products"
               color="#545454"
               onPress={() => navigation.navigate('Update')}
+            />
+          </View>
+          <View style={styles.view}>
+            <Button
+              title="Search Products"
+              color="#545454"
+              onPress={() => navigation.navigate('Search')}
             />
           </View>
         </SafeAreaView>

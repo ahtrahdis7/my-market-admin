@@ -35,7 +35,6 @@ async function submitProduct(props, itemObj) {
       .then((response) => response.json())
       .then(function (res) {
         alert('Update Request Success');
-        props.navigation.goBack();
         // AddProductsScreen(props);
       })
       // eslint-disable-next-line handle-callback-err
@@ -45,6 +44,7 @@ async function submitProduct(props, itemObj) {
     alert('Some fields are empty');
     // AddProductsScreen(props);
   }
+  props.navigation.navigate('Home')
 }
 
 function UpdateDetails(props) {

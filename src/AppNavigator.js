@@ -1,12 +1,13 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/Home/HomeScreen';
 import AddProducts from './screens/AddProducts/AddProducts';
 import OrderDetails from './screens/OrderDetails/OrderDetailsScreen';
 import Update from './screens/UpdateProducts/updateProducts';
 import ItemList from './screens/ItemsList/ItemsListScreen';
 import UpdateDetails from './screens/updateDetailsScreen/update';
+import Search from './screens/Search/SearchScreen';
 const Stack = createStackNavigator();
 
 const options = {
@@ -35,6 +36,7 @@ function App() {
           component={OrderDetails}
         />
         <Stack.Screen name="Update" options={options} component={Update} />
+        <Stack.Screen name="Search" options={options} component={Search} />
         <Stack.Screen name="ItemsList" options={options} component={ItemList} />
         <Stack.Screen name="UpdateDetails" options={options} component={UpdateDetails} />
 
